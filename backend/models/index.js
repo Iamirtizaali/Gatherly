@@ -4,6 +4,7 @@ const UserModel = require("./User.js");
 const EventModel = require("./Event.js");
 const RSVPModel = require("./RSVP.js");
 const CommentModel = require("./Comment.js");
+const EventLikeModel = require("./EventLike.js");
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -22,6 +23,7 @@ models.User = UserModel(sequelize, DataTypes);
 models.Event = EventModel(sequelize, DataTypes);
 models.RSVP = RSVPModel(sequelize, DataTypes);
 models.Comment = CommentModel(sequelize, DataTypes);
+models.EventLike = EventLikeModel(sequelize, DataTypes);
 
 // Setup associations
 Object.keys(models).forEach((modelName) => {

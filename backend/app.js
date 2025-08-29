@@ -2,9 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const userRoutes = require("./routes/auth.routes");
 const sequelize = require("./config/database");
 const cookieParser = require("cookie-parser");
+const authRoutes = require("./routes/auth.routes");
+const userRoutes = require("./routes/user.routes");
+const eventRoutes = require("./routes/event.routes");
+const rsvpRoutes = require("./routes/rsvp.routes");
+const commentRoutes = require("./routes/comment.routes");
 
 const app = express();
 
@@ -21,7 +25,12 @@ app.use(
 );
 
 // Routes
-app.use("/api/auth", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/events", eventRoutes);
+app.use("/api/rsvps", rsvpRoutes);
+app.use("/api/comments", commentRoutes);
+
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "Welcome to Express API Kit! 🚀",

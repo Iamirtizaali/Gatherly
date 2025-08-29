@@ -14,12 +14,14 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: "public",
     },
     image: { type: DataTypes.STRING },
+    likes: { type: DataTypes.INTEGER, defaultValue: 0 },
   });
 
   Event.associate = (models) => {
     Event.belongsTo(models.User, { foreignKey: "createdBy", as: "organizer" });
     Event.hasMany(models.Comment, { foreignKey: "eventId" });
     Event.hasMany(models.RSVP, { foreignKey: "eventId" });
+    Event.hasMany(models.EventLike, { foreignKey: "eventId" });
   };
 
   return Event;

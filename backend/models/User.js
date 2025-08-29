@@ -11,12 +11,15 @@ module.exports = (sequelize) => {
       defaultValue: "user",
     },
     profilePic: { type: DataTypes.STRING },
+    otp: { type: DataTypes.STRING, allowNull: true },
+    otpExpires: { type: DataTypes.DATE, allowNull: true },
   });
 
   User.associate = (models) => {
     User.hasMany(models.Event, { foreignKey: "createdBy" });
     User.hasMany(models.Comment, { foreignKey: "userId" });
     User.hasMany(models.RSVP, { foreignKey: "userId" });
+    User.hasMany(models.EventLike, { foreignKey: "userId" });
   };
 
   return User;
